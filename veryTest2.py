@@ -15,9 +15,11 @@ def createWidgets(root):
 	window2.grid(row=0, column=1)
 	for field in entries1:
 		row = Frame(window1)
+		lab = Label(row, text='Rule '+str(counter), anchor='w')
 		ent1 = Entry(row)
 		ent1.insert(0, field)
 		row.pack(side=TOP, fill=X, padx=5, pady=5)
+		lab.pack(side=LEFT)
 		ent1.pack(side=LEFT)
 	for field in entries2:
 		row2 = Frame(window2)
