@@ -8,7 +8,15 @@ entries1 = []
 entries2 = []
 
 
-
+def createWidgets(root):
+	window1 = Frame(root)
+	window1.grid(row=0, column=0)
+	for field in entries1:
+		row = Frame(window1)
+		ent1 = Entry(row)
+		ent1.insert(0, field)
+		row.pack(side=TOP, fill=X, padx=5, pady=5)
+		ent1.pack(side=LEFT)
 
 
 
@@ -40,6 +48,7 @@ if __name__ == '__main__':
    root = Tk()
    root.title('Adninistrator panel')
    getFirewall()
+   createWidgets(root)
    buttonQuit = Button(root, text='Quit', command=root.quit)
    buttonQuit.grid(row=1, column=1)
    root.mainloop()
