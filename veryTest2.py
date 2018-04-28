@@ -63,8 +63,19 @@ def getEntries():
 				entriesFinal1.append(entry.get())
 		for entry in listEntries2:
 				entriesFinal2.append(entry.get())
+		writeInCSV()
 		labSave = Label(root, text='Rules saved!', anchor='w')
 		labSave.grid(row=1, column=0)
+
+
+def writeInCSV():
+		counting = 1
+		csvTab = []
+		for test in entriesFinal1:
+				csvTab.append([str(counting), entriesFinal1[counting-1], entriesFinal2[counting-1]])
+				counting+=1
+		print csvTab
+		print entriesFinal1[1]	
 
 
 
