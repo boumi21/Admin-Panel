@@ -9,6 +9,7 @@ entries2 = []
 
 
 def createWidgets(root):
+	counter = 1
 	window1 = Frame(root)
 	window1.grid(row=0, column=0)
 	window2 = Frame(root)
@@ -21,6 +22,7 @@ def createWidgets(root):
 		row.pack(side=TOP, fill=X, padx=5, pady=5)
 		lab.pack(side=LEFT)
 		ent1.pack(side=LEFT)
+		counter+=1
 	for field in entries2:
 		row2 = Frame(window2)
 		#lab = Label(row, width=15, text=field, anchor='w')
@@ -28,6 +30,7 @@ def createWidgets(root):
 		ent2.insert(0, field)
 		row2.pack(side=TOP, fill=X, padx=5, pady=5)
 		ent2.pack(side=RIGHT, pady=1)
+	print ent2.get()
 
 
 
@@ -60,6 +63,8 @@ if __name__ == '__main__':
    root.title('Adninistrator panel')
    getFirewall()
    createWidgets(root)
+   buttonSave = Button(root, text="Save", command=getEntries)
+   buttonSave.grid(row=1, column=0)
    buttonQuit = Button(root, text='Quit', command=root.quit)
    buttonQuit.grid(row=1, column=1)
    root.mainloop()
