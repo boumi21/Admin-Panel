@@ -8,6 +8,8 @@ entries1 = []
 entries2 = []
 listEntries1 = []
 listEntries2 = []
+entriesFinal1 = []
+entriesFinal2 = []
 
 
 def createWidgets(root):
@@ -28,7 +30,6 @@ def createWidgets(root):
 		counter+=1
 	for field in entries2:
 		row2 = Frame(window2)
-		#lab = Label(row, width=15, text=field, anchor='w')
 		ent2 = Entry(row2)
 		ent2.insert(0, field)
 		listEntries2.append(ent2)
@@ -58,7 +59,13 @@ def getFirewall():
 
 
 def getEntries():
-	print ent1
+		for entry in listEntries1:
+				entriesFinal1.append(entry.get())
+		for entry in listEntries2:
+				entriesFinal2.append(entry.get())
+		labSave = Label(root, text='Rules saved!', anchor='w')
+		labSave.grid(row=1, column=0)
+
 
 
 if __name__ == '__main__':
@@ -67,7 +74,7 @@ if __name__ == '__main__':
 	 getFirewall()
 	 createWidgets(root)
 	 buttonSave = Button(root, text="Save", command=getEntries)
-	 buttonSave.grid(row=1, column=0)
+	 buttonSave.grid(row=2, column=0)
 	 buttonQuit = Button(root, text='Quit', command=root.quit)
-	 buttonQuit.grid(row=1, column=1)
+	 buttonQuit.grid(row=2, column=1)
 	 root.mainloop()
