@@ -11,12 +11,21 @@ entries2 = []
 def createWidgets(root):
 	window1 = Frame(root)
 	window1.grid(row=0, column=0)
+	window2 = Frame(root)
+	window2.grid(row=0, column=1)
 	for field in entries1:
 		row = Frame(window1)
 		ent1 = Entry(row)
 		ent1.insert(0, field)
 		row.pack(side=TOP, fill=X, padx=5, pady=5)
 		ent1.pack(side=LEFT)
+	for field in entries2:
+		row2 = Frame(window2)
+		#lab = Label(row, width=15, text=field, anchor='w')
+		ent2 = Entry(row2)
+		ent2.insert(0, field)
+		row2.pack(side=TOP, fill=X, padx=5, pady=5)
+		ent2.pack(side=RIGHT, pady=1)
 
 
 
