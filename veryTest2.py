@@ -82,7 +82,8 @@ def getEntries():
 		#label to indicate to the user that the rules are saved
 		labSave = Label(root, text='Rules saved!', anchor='w')
 		labSave.grid(row=1, column=0)
-		
+		root.after(1500, labSave.destroy)
+
 
 #Updates the CSV file with the new ruser's rules
 def writeInCSV():
