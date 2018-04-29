@@ -4,6 +4,7 @@ import os
 import csv
 
 policyFile = "firewallpolicies.csv"
+newPolicyFile = "newFirewall.csv"
 entries1 = []
 entries2 = []
 listEntries1 = []
@@ -43,16 +44,12 @@ def getFirewall():
 		reader = csv.reader(ifile)
 		rownum = 0
 		for row in reader:
-				# Save header row.
-				if rownum == 0:
-						header = row
-				else:
-						colnum = 0
-						for col in row:
-								#print '%-8s: %s' % (header[colnum], col)
-								colnum += 1
-						entries1.append(row[1])
-						entries2.append(row[2])
+				colnum = 0
+				for col in row:
+						#print '%-8s: %s' % (header[colnum], col)
+						colnum += 1
+				entries1.append(row[1])
+				entries2.append(row[2])
 				rownum += 1
 		ifile.close()
 
@@ -74,6 +71,11 @@ def writeInCSV():
 		for test in entriesFinal1:
 				csvTab.append([str(counting), entriesFinal1[counting-1], entriesFinal2[counting-1]])
 				counting+=1
+		ifile = open(newPolicyFile,"wb")
+		output = csv.writer(ifile)
+		for row in csvTab:
+				output.writerow(row)
+		ifile.close()				
 		print csvTab
 		print entriesFinal1[1]	
 
