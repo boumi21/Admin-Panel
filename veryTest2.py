@@ -100,6 +100,10 @@ def writeInCSV():
 		ifile.close()
 
 
+def popUpNewRules():
+		window = Toplevel(root)	
+
+
 #launch when this python file is called directly
 if __name__ == '__main__':
 	 #Creates master frame
@@ -107,6 +111,8 @@ if __name__ == '__main__':
 	 root.title('Adninistrator panel')
 	 getFirewall()
 	 createWidgets(root)
+	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
+	 buttonNewRule.grid(row=2, column=2)
 	 #Creates save button
 	 buttonSave = Button(root, text="Save", command=getEntries)
 	 buttonSave.grid(row=2, column=0)
