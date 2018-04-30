@@ -20,6 +20,8 @@ listEntries2 = []
 entriesFinal1 = []
 entriesFinal2 = []
 
+rulesToAdd = 0
+
 
 #Creates the initial widgets
 def createWidgets(root):
@@ -97,11 +99,20 @@ def writeInCSV():
 		output = csv.writer(ifile)
 		for row in csvTab:
 				output.writerow(row)
-		ifile.close()
+		ifile.close()	
 
 
 def popUpNewRules():
-		window = Toplevel(root)	
+		window = Toplevel(root)
+		entNumber = Entry(window)
+		entNumber.pack()
+		buttonQuitAddRules = Button(window, text="Ok", command=lambda: quitAddRules(entNumber, window))
+		buttonQuitAddRules.pack()
+
+def quitAddRules(entNumber, window):
+	rulesToAdd = entNumber.get()
+	window.destroy()
+		
 
 
 #launch when this python file is called directly
