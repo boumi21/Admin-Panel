@@ -20,9 +20,6 @@ listEntries2 = []
 entriesFinal1 = []
 entriesFinal2 = []
 
-window1 = None
-window2 = None
-
 
 #Creates the initial widgets
 def createWidgets(root):
@@ -31,7 +28,7 @@ def createWidgets(root):
 	
 	window1.grid(row=0, column=0)
 	#frame for 2nd set of entries
-	window2 = Frame(root)
+	
 	window2.grid(row=0, column=1)
 	#for each rule (1st IP)
 	for field in entries1:
@@ -117,13 +114,24 @@ def quitAddRules(entNumber, window):
 
 
 def addRules(rulesToAdd):
+	counter = 1
 	for i in range(rulesToAdd):
 		row = Frame(window1)
+		lab = Label(row, text='Rule '+str(counter), anchor='w')
 		ent1 = Entry(row)
 		listEntries1.append(ent1)
-		print window1
 		row.pack(side=TOP, fill=X, padx=5, pady=5)
+		lab.pack(side=LEFT)
 		ent1.pack(side=LEFT)
+
+		row2 = Frame(window2)
+		ent2 = Entry(row2)
+		ent2.insert(0, 'magnum2000000000')
+		test = ent2.get()
+		print test
+		listEntries2.append(ent2)
+		row2.pack(side=TOP, fill=X, padx=5, pady=5)
+		ent2.pack(side=RIGHT, pady=1)
 		
 
 
@@ -133,6 +141,7 @@ if __name__ == '__main__':
 	 root = Tk()
 	 root.title('Adninistrator panel')
 	 window1 = Frame(root)
+	 window2 = Frame(root)
 	 getFirewall()
 	 createWidgets(root)
 	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
