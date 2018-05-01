@@ -102,7 +102,9 @@ def writeInCSV():
 
 def popUpNewRules():
 		window = Toplevel(root)
+		labNewRules = Label(window, text='How many rules do you want to add?', anchor='w')
 		entNumber = Entry(window)
+		labNewRules.pack()
 		entNumber.pack()
 		buttonQuitAddRules = Button(window, text="Ok", command=lambda: quitAddRules(entNumber, window))
 		buttonQuitAddRules.pack()
@@ -119,6 +121,7 @@ def addRules(rulesToAdd):
 		row = Frame(window1)
 		lab = Label(row, text='Rule '+str(len(listEntries1)+1), anchor='w')
 		ent1 = Entry(row)
+		ent1.insert(0, '10.0.0.X')
 		listEntries1.append(ent1)
 		row.pack(side=TOP, fill=X, padx=5, pady=5)
 		lab.pack(side=LEFT)
@@ -127,8 +130,7 @@ def addRules(rulesToAdd):
 		#2nd column
 		row2 = Frame(window2)
 		ent2 = Entry(row2)
-		ent2.insert(0, 'magnum2000000000')
-		test = ent2.get()
+		ent2.insert(0, '10.0.0.X')
 		listEntries2.append(ent2)
 		row2.pack(side=TOP, fill=X, padx=5, pady=5)
 		ent2.pack(side=RIGHT, pady=1)
