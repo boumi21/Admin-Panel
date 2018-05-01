@@ -102,12 +102,23 @@ def writeInCSV():
 
 def popUpNewRules():
 		window = Toplevel(root)
+		vcmd = (root.register(onValidate),
+                '%P')
 		labNewRules = Label(window, text='How many rules do you want to add?', anchor='w')
-		entNumber = Entry(window)
+		entNumber = Entry(window, validate = 'key', validatecommand=vcmd)
 		labNewRules.pack()
 		entNumber.pack()
 		buttonQuitAddRules = Button(window, text="Ok", command=lambda: quitAddRules(entNumber, window))
 		buttonQuitAddRules.pack()
+
+
+
+def onValidate(P):
+	if (str.isdigit(P) or P == ""):
+		return True
+	else:
+		return False	
+
 
 def quitAddRules(entNumber, window):
 	rulesToAdd = int(entNumber.get())
