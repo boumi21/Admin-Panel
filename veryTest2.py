@@ -20,14 +20,15 @@ listEntries2 = []
 entriesFinal1 = []
 entriesFinal2 = []
 
-rulesToAdd = 0
+window1 = None
+window2 = None
 
 
 #Creates the initial widgets
 def createWidgets(root):
 	counter = 1
 	#frame for 1st set of entries
-	window1 = Frame(root)
+	
 	window1.grid(row=0, column=0)
 	#frame for 2nd set of entries
 	window2 = Frame(root)
@@ -110,8 +111,19 @@ def popUpNewRules():
 		buttonQuitAddRules.pack()
 
 def quitAddRules(entNumber, window):
-	rulesToAdd = entNumber.get()
+	rulesToAdd = int(entNumber.get())
 	window.destroy()
+	addRules(rulesToAdd)
+
+
+def addRules(rulesToAdd):
+	for i in range(rulesToAdd):
+		row = Frame(window1)
+		ent1 = Entry(row)
+		listEntries1.append(ent1)
+		print window1
+		row.pack(side=TOP, fill=X, padx=5, pady=5)
+		ent1.pack(side=LEFT)
 		
 
 
@@ -120,6 +132,7 @@ if __name__ == '__main__':
 	 #Creates master frame
 	 root = Tk()
 	 root.title('Adninistrator panel')
+	 window1 = Frame(root)
 	 getFirewall()
 	 createWidgets(root)
 	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
