@@ -23,7 +23,7 @@ entriesFinal2 = []
 
 #Creates the initial widgets
 def createWidgets(root):
-	counter = 1
+	
 	#frame for 1st set of entries
 	
 	window1.grid(row=0, column=0)
@@ -34,7 +34,7 @@ def createWidgets(root):
 	for field in entries1:
 		#Creates a new row
 		row = Frame(window1)
-		lab = Label(row, text='Rule '+str(counter), anchor='w')
+		lab = Label(row, text='Rule '+str(len(listEntries1)+1), anchor='w')
 		ent1 = Entry(row)
 		#insert the correponding rile in the entry
 		ent1.insert(0, field)
@@ -42,7 +42,7 @@ def createWidgets(root):
 		row.pack(side=TOP, fill=X, padx=5, pady=5)
 		lab.pack(side=LEFT)
 		ent1.pack(side=LEFT)
-		counter+=1
+		
 		#for each rule (2nd IP)
 	for field in entries2:
 		row2 = Frame(window2)
@@ -114,21 +114,21 @@ def quitAddRules(entNumber, window):
 
 
 def addRules(rulesToAdd):
-	counter = 1
 	for i in range(rulesToAdd):
+		#1st column
 		row = Frame(window1)
-		lab = Label(row, text='Rule '+str(counter), anchor='w')
+		lab = Label(row, text='Rule '+str(len(listEntries1)+1), anchor='w')
 		ent1 = Entry(row)
 		listEntries1.append(ent1)
 		row.pack(side=TOP, fill=X, padx=5, pady=5)
 		lab.pack(side=LEFT)
 		ent1.pack(side=LEFT)
 
+		#2nd column
 		row2 = Frame(window2)
 		ent2 = Entry(row2)
 		ent2.insert(0, 'magnum2000000000')
 		test = ent2.get()
-		print test
 		listEntries2.append(ent2)
 		row2.pack(side=TOP, fill=X, padx=5, pady=5)
 		ent2.pack(side=RIGHT, pady=1)
