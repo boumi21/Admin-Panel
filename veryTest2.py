@@ -114,10 +114,13 @@ def popUpNewRules():
 
 
 def onValidate(P):
-	if (str.isdigit(P) or P == ""):
-		return True
+	if isinstance(P, str):
+		if (str.isdigit(P) or P == ""):
+			return True
+		else:
+			return False
 	else:
-		return False	
+		return False		
 
 
 def quitAddRules(entNumber, window):
