@@ -24,8 +24,6 @@ entriesFinal2 = []
 #Creates the initial widgets
 def createWidgets(root):
 	
-	#frame for 1st set of entries
-	
 	window1.grid(row=0, column=0)
 	#frame for 2nd set of entries
 	
@@ -39,7 +37,7 @@ def createWidgets(root):
 		#insert the correponding rile in the entry
 		ent1.insert(0, field)
 		listEntries1.append(ent1)
-		row.pack(side=TOP, fill=X, padx=5, pady=5)
+		row.pack(side=TOP, padx=5, pady=5)
 		lab.pack(side=LEFT)
 		ent1.pack(side=LEFT)
 		
@@ -48,9 +46,14 @@ def createWidgets(root):
 		row2 = Frame(window2)
 		ent2 = Entry(row2)
 		ent2.insert(0, field)
+		photo=PhotoImage(file="Cross.gif")
+		buttonDelete = Button(row2, text='Delete', command=root.quit)
+		buttonDelete.config(image=photo, width=15, height=15)
+		buttonDelete.image = photo
 		listEntries2.append(ent2)
 		row2.pack(side=TOP, fill=X, padx=5, pady=5)
-		ent2.pack(side=RIGHT, pady=1)
+		ent2.pack(side=LEFT)
+		buttonDelete.pack(side=LEFT)
 
 
 #get the different rules of the initial firewall
