@@ -124,9 +124,15 @@ def onValidate(P):
 
 
 def quitAddRules(entNumber, window):
-	rulesToAdd = int(entNumber.get())
-	window.destroy()
-	addRules(rulesToAdd)
+	rulesToAddString = entNumber.get()
+	if (rulesToAddString != ""):
+		rulesToAdd = int(rulesToAddString)
+		window.destroy()
+		addRules(rulesToAdd)
+	else:
+		labWarning = Label(window, text='Please enter a number of new rules', anchor='w')
+		labWarning.pack()
+		window.after(1500, labWarning.destroy)
 
 
 def addRules(rulesToAdd):
