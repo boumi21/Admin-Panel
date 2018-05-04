@@ -161,9 +161,16 @@ def addRules(rulesToAdd):
 
 
 def deleteRules(ruleToDelete):
+	global window1
+	global window2
+	window1.destroy()
+	window2.destroy()
 	del listEntries1[ruleToDelete]
 	del listEntries2[ruleToDelete]
-		
+	window1 = Frame(root)
+	window2 = Frame(root)
+	getFirewall()
+	createWidgets(root)
 
 
 #launch when this python file is called directly
