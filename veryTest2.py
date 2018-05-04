@@ -76,7 +76,9 @@ def getFirewall():
 def getEntries():
 		del entriesFinal1[:]
 		del entriesFinal2[:]
+		print listEntries1
 		for entry in listEntries1:
+				print entry.get()
 				entriesFinal1.append(entry.get())
 		for entry in listEntries2:
 				entriesFinal2.append(entry.get())
@@ -163,13 +165,14 @@ def addRules(rulesToAdd):
 def deleteRules(ruleToDelete):
 	global window1
 	global window2
-	window1.destroy()
-	window2.destroy()
 	del listEntries1[ruleToDelete]
 	del listEntries2[ruleToDelete]
 	window1 = Frame(root)
 	window2 = Frame(root)
+	getEntries()
 	getFirewall()
+	window1.destroy()
+	window2.destroy()
 	createWidgets(root)
 
 
