@@ -47,7 +47,7 @@ def createWidgets(root):
 		ent2 = Entry(row2)
 		ent2.insert(0, field)
 		photo=PhotoImage(file="Cross.gif")
-		buttonDelete = Button(row2, text='Delete', command=root.quit)
+		buttonDelete = Button(row2, text='Delete',textvariable=len(listEntries2), command=lambda i=len(listEntries2): deleteRules(i))
 		buttonDelete.config(image=photo, width=15, height=15)
 		buttonDelete.image = photo
 		listEntries2.append(ent2)
@@ -157,6 +157,11 @@ def addRules(rulesToAdd):
 		listEntries2.append(ent2)
 		row2.pack(side=TOP, fill=X, padx=5, pady=5)
 		ent2.pack(side=RIGHT, pady=1)
+
+
+
+def deleteRules(ruleToDelete):
+	print ruleToDelete
 		
 
 
