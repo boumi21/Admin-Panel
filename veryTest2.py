@@ -161,7 +161,8 @@ def addRules(rulesToAdd):
 
 
 def deleteRules(ruleToDelete):
-	print ruleToDelete
+	del listEntries1[ruleToDelete]
+	del listEntries2[ruleToDelete]
 		
 
 
