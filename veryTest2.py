@@ -68,6 +68,8 @@ def createWidgets(root, *argv):
 
 #get the different rules of the initial firewall
 def getFirewall():
+		del entries1[:]
+		del entries2[:]
 		ifile  = open(policyFile, "rb")
 		reader = csv.reader(ifile)
 		rownum = 0
