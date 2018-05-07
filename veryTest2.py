@@ -159,7 +159,7 @@ def addRules(rulesToAdd):
 		ent1 = Entry(row)
 		ent1.insert(0, '10.0.0.X')
 		listEntries1.append(ent1)
-		row.pack(side=TOP, fill=X, padx=5, pady=5)
+		row.pack(side=TOP, padx=5, pady=5)
 		lab.pack(side=LEFT)
 		ent1.pack(side=LEFT)
 
@@ -167,9 +167,14 @@ def addRules(rulesToAdd):
 		row2 = Frame(window2)
 		ent2 = Entry(row2)
 		ent2.insert(0, '10.0.0.X')
+		photo=PhotoImage(file="Cross.gif")
+		buttonDelete = Button(row2, text='Delete', command=lambda i=len(listEntries2): deleteRules(i))
+		buttonDelete.config(image=photo, width=15, height=15)
+		buttonDelete.image = photo
 		listEntries2.append(ent2)
 		row2.pack(side=TOP, fill=X, padx=5, pady=5)
-		ent2.pack(side=RIGHT, pady=1)
+		ent2.pack(side=LEFT)
+		buttonDelete.pack(side=LEFT)
 
 
 
