@@ -20,15 +20,25 @@ listEntries2 = []
 entriesFinal1 = []
 entriesFinal2 = []
 
+global pressDelete
+
 
 #Creates the initial widgets
-def createWidgets(root):
+def createWidgets(root, *argv):
 	
 	window1.grid(row=0, column=0)
 	#frame for 2nd set of entries
 	
 	window2.grid(row=0, column=1)
 	#for each rule (1st IP)
+
+
+	if argv:
+		if argv[0] == True:
+			print 'yayayayayayyaya'
+			del listEntries1[:]
+			pressDelete = False
+
 	for field in entries1:
 		#Creates a new row
 		row = Frame(window1)
@@ -167,13 +177,14 @@ def deleteRules(ruleToDelete):
 	global window2
 	del listEntries1[ruleToDelete]
 	del listEntries2[ruleToDelete]
-	window1 = Frame(root)
-	window2 = Frame(root)
+	pressDelete = True
 	getEntries()
 	getFirewall()
 	window1.destroy()
 	window2.destroy()
-	createWidgets(root)
+	window1 = Frame(root)
+	window2 = Frame(root)
+	createWidgets(root, pressDelete)
 
 
 #launch when this python file is called directly
@@ -183,6 +194,7 @@ if __name__ == '__main__':
 	 root.title('Adninistrator panel')
 	 window1 = Frame(root)
 	 window2 = Frame(root)
+	 pressDelete = False
 	 getFirewall()
 	 createWidgets(root)
 	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
