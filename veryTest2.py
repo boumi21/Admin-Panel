@@ -35,8 +35,8 @@ def createWidgets(root, *argv):
 
 	if argv:
 		if argv[0] == True:
-			print 'yayayayayayyaya'
 			del listEntries1[:]
+			del listEntries2[:]
 			pressDelete = False
 
 	for field in entries1:
@@ -57,7 +57,8 @@ def createWidgets(root, *argv):
 		ent2 = Entry(row2)
 		ent2.insert(0, field)
 		photo=PhotoImage(file="Cross.gif")
-		buttonDelete = Button(row2, text='Delete',textvariable=len(listEntries2), command=lambda i=len(listEntries2): deleteRules(i))
+		print len(listEntries2)
+		buttonDelete = Button(row2, text='Delete', command=lambda i=len(listEntries2): deleteRules(i))
 		buttonDelete.config(image=photo, width=15, height=15)
 		buttonDelete.image = photo
 		listEntries2.append(ent2)
@@ -88,9 +89,7 @@ def getFirewall():
 def getEntries():
 		del entriesFinal1[:]
 		del entriesFinal2[:]
-		print listEntries1
 		for entry in listEntries1:
-				print entry.get()
 				entriesFinal1.append(entry.get())
 		for entry in listEntries2:
 				entriesFinal2.append(entry.get())
@@ -177,6 +176,7 @@ def addRules(rulesToAdd):
 def deleteRules(ruleToDelete):
 	global window1
 	global window2
+	print listEntries1
 	del listEntries1[ruleToDelete]
 	del listEntries2[ruleToDelete]
 	pressDelete = True
