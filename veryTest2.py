@@ -20,6 +20,7 @@ listEntries2 = []
 entriesFinal1 = []
 entriesFinal2 = []
 
+#For checking when creating widgets (no duplicate)
 global pressDelete
 
 
@@ -33,6 +34,7 @@ def createWidgets(root, *argv):
 	#for each rule (1st IP)
 
 
+	#Check if the user pressed on the delete button
 	if argv:
 		if argv[0] == True:
 			del listEntries1[:]
@@ -57,7 +59,6 @@ def createWidgets(root, *argv):
 		ent2 = Entry(row2)
 		ent2.insert(0, field)
 		photo=PhotoImage(file="Cross.gif")
-		print len(listEntries2)
 		buttonDelete = Button(row2, text='Delete', command=lambda i=len(listEntries2): deleteRules(i))
 		buttonDelete.config(image=photo, width=15, height=15)
 		buttonDelete.image = photo
@@ -116,8 +117,10 @@ def writeInCSV():
 		ifile.close()	
 
 
+#Pop up when user wants to add new rules
 def popUpNewRules():
 		window = Toplevel(root)
+		#call the digit checker
 		vcmd = (root.register(onValidate),
                 '%P')
 		labNewRules = Label(window, text='How many rules do you want to add?', anchor='w')
@@ -128,7 +131,7 @@ def popUpNewRules():
 		buttonQuitAddRules.pack()
 
 
-
+# Digit checker
 def onValidate(P):
 	if isinstance(P, str):
 		if (str.isdigit(P) or P == ""):
@@ -139,6 +142,7 @@ def onValidate(P):
 		return False		
 
 
+#What to do when user press 'ok' on the pop up for new rules, check is the entry is empty
 def quitAddRules(entNumber, window):
 	rulesToAddString = entNumber.get()
 	if (rulesToAddString != ""):
@@ -151,6 +155,8 @@ def quitAddRules(entNumber, window):
 		window.after(1500, labWarning.destroy)
 
 
+
+#Create as many widgets as the user wants
 def addRules(rulesToAdd):
 	for i in range(rulesToAdd):
 		#1st column
@@ -178,10 +184,10 @@ def addRules(rulesToAdd):
 
 
 
+#Method called when user clicks on a delete button
 def deleteRules(ruleToDelete):
 	global window1
 	global window2
-	print listEntries1
 	del listEntries1[ruleToDelete]
 	del listEntries2[ruleToDelete]
 	pressDelete = True
