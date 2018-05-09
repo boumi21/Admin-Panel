@@ -96,9 +96,15 @@ def getEntries():
 		del entriesFinal1[:]
 		del entriesFinal2[:]
 		for entry in listEntries1:
-				entriesFinal1.append(entry.get())
+				if verifyEntries(entry.get()):			
+					entriesFinal1.append(entry.get())
+				else:
+					return	
 		for entry in listEntries2:
-				entriesFinal2.append(entry.get())
+				if verifyEntries(entry.get()):
+					entriesFinal2.append(entry.get())
+				else:
+					return	
 
 			
 		#call function to update the csv file		
