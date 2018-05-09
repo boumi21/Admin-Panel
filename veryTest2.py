@@ -2,6 +2,7 @@
 from Tkinter import *
 import os
 import csv
+import re
 
 #path to the csv file
 policyFile = "firewallpolicies.csv"
@@ -98,6 +99,8 @@ def getEntries():
 				entriesFinal1.append(entry.get())
 		for entry in listEntries2:
 				entriesFinal2.append(entry.get())
+
+			
 		#call function to update the csv file		
 		writeInCSV()
 		#label to indicate to the user that the rules are saved
@@ -205,6 +208,10 @@ def deleteRules(ruleToDelete):
 	window1 = Frame(root)
 	window2 = Frame(root)
 	createWidgets(root, pressDelete)
+
+
+def verifyEntries(IP):
+	return re.match(r"10\.0\.0\.[0-9]+", IP)	
 
 
 #launch when this python file is called directly
