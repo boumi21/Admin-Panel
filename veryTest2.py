@@ -28,7 +28,7 @@ global pressDelete
 def createWidgets(root, *argv):
 
 	top.grid(columnspan = 2, row=0)
-	w = Label(top, text="Packets blocked")
+	w = Label(top, text="Firewall admninistration", fg='red', font=('Helvetica',16))
 	w.pack()
 	
 	window1.grid(row=1, column=0)
@@ -219,12 +219,12 @@ if __name__ == '__main__':
 	 getFirewall()
 	 createWidgets(root)
 	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
-	 buttonNewRule.grid(row=3, column=2)
+	 buttonNewRule.grid(row=3, column=1)
 	 #Creates save button
 	 buttonSave = Button(root, text="Save", command=getEntries)
 	 buttonSave.grid(row=3, column=0)
 	 #Creates quit button
 	 buttonQuit = Button(root, text='Quit', command=root.quit)
-	 buttonQuit.grid(row=3, column=1)
+	 buttonQuit.grid(row=3, column=2)
 	 #Keep the application running
 	 root.mainloop()
