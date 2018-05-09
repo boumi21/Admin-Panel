@@ -26,11 +26,15 @@ global pressDelete
 
 #Creates the initial widgets
 def createWidgets(root, *argv):
+
+	top.grid(columnspan = 2, row=0)
+	w = Label(top, text="Packets blocked")
+	w.pack()
 	
-	window1.grid(row=0, column=0)
+	window1.grid(row=1, column=0)
 	#frame for 2nd set of entries
 	
-	window2.grid(row=0, column=1)
+	window2.grid(row=1, column=1)
 	#for each rule (1st IP)
 
 
@@ -46,7 +50,7 @@ def createWidgets(root, *argv):
 		row = Frame(window1)
 		lab = Label(row, text='Rule '+str(len(listEntries1)+1), anchor='w')
 		ent1 = Entry(row)
-		#insert the correponding rile in the entry
+		#insert the correponding rule in the entry
 		ent1.insert(0, field)
 		listEntries1.append(ent1)
 		row.pack(side=TOP, padx=5, pady=5)
@@ -98,7 +102,7 @@ def getEntries():
 		writeInCSV()
 		#label to indicate to the user that the rules are saved
 		labSave = Label(root, text='Rules saved!', anchor='w')
-		labSave.grid(row=1, column=0)
+		labSave.grid(row=2, column=0)
 		root.after(1500, labSave.destroy)
 
 
@@ -186,6 +190,7 @@ def addRules(rulesToAdd):
 
 #Method called when user clicks on a delete button
 def deleteRules(ruleToDelete):
+	global top
 	global window1
 	global window2
 	del listEntries1[ruleToDelete]
@@ -193,8 +198,10 @@ def deleteRules(ruleToDelete):
 	pressDelete = True
 	getEntries()
 	getFirewall()
+	top.destroy()
 	window1.destroy()
 	window2.destroy()
+	top = Frame(root)
 	window1 = Frame(root)
 	window2 = Frame(root)
 	createWidgets(root, pressDelete)
@@ -205,18 +212,19 @@ if __name__ == '__main__':
 	 #Creates master frame
 	 root = Tk()
 	 root.title('Adninistrator panel')
+	 top = Frame(root)
 	 window1 = Frame(root)
 	 window2 = Frame(root)
 	 pressDelete = False
 	 getFirewall()
 	 createWidgets(root)
 	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
-	 buttonNewRule.grid(row=2, column=2)
+	 buttonNewRule.grid(row=3, column=2)
 	 #Creates save button
 	 buttonSave = Button(root, text="Save", command=getEntries)
-	 buttonSave.grid(row=2, column=0)
+	 buttonSave.grid(row=3, column=0)
 	 #Creates quit button
 	 buttonQuit = Button(root, text='Quit', command=root.quit)
-	 buttonQuit.grid(row=2, column=1)
+	 buttonQuit.grid(row=3, column=1)
 	 #Keep the application running
 	 root.mainloop()
