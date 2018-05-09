@@ -99,14 +99,15 @@ def getEntries():
 				if verifyEntries(entry.get()):			
 					entriesFinal1.append(entry.get())
 				else:
+					failEntries()
 					return	
 		for entry in listEntries2:
 				if verifyEntries(entry.get()):
 					entriesFinal2.append(entry.get())
 				else:
+					failEntries()
 					return	
-
-			
+		
 		#call function to update the csv file		
 		writeInCSV()
 		#label to indicate to the user that the rules are saved
@@ -217,7 +218,12 @@ def deleteRules(ruleToDelete):
 
 
 def verifyEntries(IP):
-	return re.match(r"10\.0\.0\.[0-9]+", IP)	
+	return re.match(r"10\.0\.0\.[0-9]+", IP)
+
+def failEntries():
+	labFail = Label(root, text='Fail!', anchor='w')
+	labFail.grid(row=2, column=0)
+	root.after(1500, labFail.destroy)
 
 
 #launch when this python file is called directly
