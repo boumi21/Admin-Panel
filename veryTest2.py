@@ -3,6 +3,7 @@ from Tkinter import *
 import os
 import csv
 import re
+import subprocess
 
 #path to the csv file
 policyFile = "firewallpolicies.csv"
@@ -147,8 +148,9 @@ def popUpNewRules():
 
 def popUpInfo():
 	window = Toplevel(root)
-	text = Text(window, state='disabled')
+	text = Text(window, height=2, width=55)
 	text.pack()
+	text.insert(END, "https://github.com/boumi21/Admin-Panel    |    2018")
 
 
 
@@ -232,6 +234,9 @@ def failEntries():
 	labFail.grid(row=2, column=0)
 	root.after(1500, labFail.destroy)
 
+def test():
+	subprocess.Popen(['./pox/pox.py','forwarding.l2_learning', 'openflow.discovery', 'openflow.spanning_tree', '--no-flood', '--hold-down', 'pox.misc.firewall'], shell=True)
+
 
 #launch when this python file is called directly
 if __name__ == '__main__':
@@ -254,5 +259,7 @@ if __name__ == '__main__':
 	 #Creates quit button
 	 buttonQuit = Button(root, text='Quit', command=root.quit)
 	 buttonQuit.grid(row=3, column=2)
+	 buttonTest = Button(root, text='Test', command=test)
+	 buttonTest.grid(row=3, column=3)
 	 #Keep the application running
 	 root.mainloop()
