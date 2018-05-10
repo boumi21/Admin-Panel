@@ -145,6 +145,13 @@ def popUpNewRules():
 		buttonQuitAddRules.pack()
 
 
+def popUpInfo():
+	window = Toplevel(root)
+	text = Text(window, state='disabled')
+	text.pack()
+
+
+
 # Digit checker
 def onValidate(P):
 	if isinstance(P, str):
@@ -221,7 +228,7 @@ def verifyEntries(IP):
 	return re.match(r"10\.0\.0\.[0-9]+", IP)
 
 def failEntries():
-	labFail = Label(root, text='Fail!', anchor='w')
+	labFail = Label(root, text='At least one IP is not good!', anchor='w')
 	labFail.grid(row=2, column=0)
 	root.after(1500, labFail.destroy)
 
@@ -237,6 +244,8 @@ if __name__ == '__main__':
 	 pressDelete = False
 	 getFirewall()
 	 createWidgets(root)
+	 buttonInfo = Button(root, text="?", command=popUpInfo, padx=5)
+	 buttonInfo.grid(row=3, column=0, sticky=W)
 	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
 	 buttonNewRule.grid(row=3, column=1)
 	 #Creates save button
