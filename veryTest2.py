@@ -234,8 +234,14 @@ def failEntries():
 	labFail.grid(row=2, column=0)
 	root.after(1500, labFail.destroy)
 
-def test():
-	subprocess.Popen(['./pox/pox.py','forwarding.l2_learning', 'openflow.discovery', 'openflow.spanning_tree', '--no-flood', '--hold-down', 'pox.misc.firewall'], shell=True)
+def activateFiewall():
+	#print 'lol'
+	subprocess.Popen(['./pox/pox.py','forwarding.l2_learning', 'openflow.discovery', 'openflow.spanning_tree', '--no-flood', '--hold-down', 'pox.misc.firewall'])
+
+
+def desactivateFirewall():
+	#print 'lol2'
+	subprocess.Popen(['fuser', '-k', '6633/tcp'])
 
 
 #launch when this python file is called directly
@@ -259,7 +265,9 @@ if __name__ == '__main__':
 	 #Creates quit button
 	 buttonQuit = Button(root, text='Quit', command=root.quit)
 	 buttonQuit.grid(row=3, column=2)
-	 buttonTest = Button(root, text='Test', command=test)
-	 buttonTest.grid(row=3, column=3)
+	 buttonStart = Button(root, text='Start', command=activateFiewall)
+	 buttonStart.grid(row=3, column=3)
+	 buttonStop = Button(root, text='Stop', command=desactivateFirewall)
+	 buttonStop.grid(row=3, column=4)
 	 #Keep the application running
 	 root.mainloop()
