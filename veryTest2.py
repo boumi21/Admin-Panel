@@ -24,6 +24,7 @@ entriesFinal2 = []
 
 #For checking when creating widgets (no duplicate)
 global pressDelete
+global firewall
 
 
 #Creates the initial widgets
@@ -243,6 +244,10 @@ def desactivateFirewall():
 	#print 'lol2'
 	subprocess.Popen(['fuser', '-k', '6633/tcp'])
 
+def closeApp():
+	print 'ahahahahahahah'
+	root.quit()
+
 
 #launch when this python file is called directly
 if __name__ == '__main__':
@@ -253,6 +258,7 @@ if __name__ == '__main__':
 	 window1 = Frame(root)
 	 window2 = Frame(root)
 	 pressDelete = False
+	 firewall = False
 	 getFirewall()
 	 createWidgets(root)
 	 buttonInfo = Button(root, text="?", command=popUpInfo, padx=5)
@@ -270,4 +276,5 @@ if __name__ == '__main__':
 	 buttonStop = Button(root, text='Stop', command=desactivateFirewall)
 	 buttonStop.grid(row=3, column=4)
 	 #Keep the application running
+	 root.protocol( "WM_DELETE_WINDOW", closeApp )
 	 root.mainloop()
