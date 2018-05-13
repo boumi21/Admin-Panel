@@ -235,17 +235,21 @@ def failEntries():
 	labFail.grid(row=2, column=0)
 	root.after(1500, labFail.destroy)
 
-def activateFiewall():
-	#print 'lol'
+def activateFirewall():
+	global firewall
 	subprocess.Popen(['./pox/pox.py','forwarding.l2_learning', 'openflow.discovery', 'openflow.spanning_tree', '--no-flood', '--hold-down', 'pox.misc.firewall'])
+	firewall = True
 
 
 def desactivateFirewall():
-	#print 'lol2'
+	global firewall
 	subprocess.Popen(['fuser', '-k', '6633/tcp'])
+	firewall = False
 
 def closeApp():
-	print 'ahahahahahahah'
+	global firewall
+	if firewall:
+		desactivateFirewall()
 	root.quit()
 
 
@@ -269,9 +273,9 @@ if __name__ == '__main__':
 	 buttonSave = Button(root, text="Save", command=getEntries)
 	 buttonSave.grid(row=3, column=0)
 	 #Creates quit button
-	 buttonQuit = Button(root, text='Quit', command=root.quit)
+	 buttonQuit = Button(root, text='Quit', command=closeApp)
 	 buttonQuit.grid(row=3, column=2)
-	 buttonStart = Button(root, text='Start', command=activateFiewall)
+	 buttonStart = Button(root, text='Start', command=activateFirewall)
 	 buttonStart.grid(row=3, column=3)
 	 buttonStop = Button(root, text='Stop', command=desactivateFirewall)
 	 buttonStop.grid(row=3, column=4)
