@@ -40,6 +40,8 @@ def createWidgets(root, *argv):
 	window2.grid(row=1, column=1)
 	#for each rule (1st IP)
 
+	sideFrame.grid(row=1, column=3)
+
 
 	#Check if the user pressed on the delete button
 	if argv:
@@ -261,6 +263,7 @@ if __name__ == '__main__':
 	 top = Frame(root)
 	 window1 = Frame(root)
 	 window2 = Frame(root)
+	 sideFrame = Frame(root)
 	 pressDelete = False
 	 firewall = False
 	 getFirewall()
@@ -268,17 +271,17 @@ if __name__ == '__main__':
 	 buttonInfo = Button(root, text="?", command=popUpInfo, padx=5)
 	 buttonInfo.grid(row=3, column=0, sticky=W)
 	 buttonNewRule = Button(root, text="Add new rule", command=popUpNewRules)
-	 buttonNewRule.grid(row=3, column=1)
+	 buttonNewRule.grid(row=3, column=1, sticky=W)
 	 #Creates save button
 	 buttonSave = Button(root, text="Save", command=getEntries)
 	 buttonSave.grid(row=3, column=0)
 	 #Creates quit button
 	 buttonQuit = Button(root, text='Quit', command=closeApp)
-	 buttonQuit.grid(row=3, column=2)
-	 buttonStart = Button(root, text='Start', command=activateFirewall)
-	 buttonStart.grid(row=3, column=3)
-	 buttonStop = Button(root, text='Stop', command=desactivateFirewall)
-	 buttonStop.grid(row=3, column=4)
+	 buttonQuit.grid(row=3, column=1, sticky=E)
+	 buttonStart = Button(sideFrame, text='Start', command=activateFirewall)
+	 buttonStart.grid(row=0, column=0)
+	 buttonStop = Button(sideFrame, text='Stop', command=desactivateFirewall)
+	 buttonStop.grid(row=2, column=0)
 	 #Keep the application running
 	 root.protocol( "WM_DELETE_WINDOW", closeApp )
 	 root.mainloop()
