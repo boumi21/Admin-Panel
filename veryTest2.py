@@ -77,6 +77,13 @@ def createWidgets(root, *argv):
 		buttonDelete.pack(side=LEFT)
 
 
+def createSideFrame(sideFrame):
+	buttonStart = Button(sideFrame, text='Start', background='green', borderwidth=4, font=('Fixedsys',10), command=activateFirewall)
+	buttonStart.grid(row=0, column=0)
+	buttonStop = Button(sideFrame, text='Stop', background='red', borderwidth=4, font=('Fixedsys',10), command=desactivateFirewall)
+	buttonStop.grid(row=2, column=0)
+
+
 #get the different rules of the initial firewall
 def getFirewall():
 		del entries1[:]
@@ -278,10 +285,9 @@ if __name__ == '__main__':
 	 #Creates quit button
 	 buttonQuit = Button(root, text='Quit', command=closeApp)
 	 buttonQuit.grid(row=3, column=1, sticky=E)
-	 buttonStart = Button(sideFrame, text='Start', command=activateFirewall)
-	 buttonStart.grid(row=0, column=0)
-	 buttonStop = Button(sideFrame, text='Stop', command=desactivateFirewall)
-	 buttonStop.grid(row=2, column=0)
+
+	 createSideFrame(sideFrame)
+
 	 #Keep the application running
 	 root.protocol( "WM_DELETE_WINDOW", closeApp )
 	 root.mainloop()
