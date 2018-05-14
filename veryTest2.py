@@ -86,6 +86,10 @@ def createSideFrame(sideFrame):
 	buttonStart.grid(row=0, column=0)
 	buttonStop = Button(sideFrame, text='Stop', background='red', borderwidth=4, state='disabled', font=('Fixedsys',10), command=desactivateFirewall)
 	buttonStop.grid(row=2, column=0)
+	textLabFirewall = StringVar()
+	labFirewall = Label(sideFrame, textvariable=textLabFirewall, fg='red')
+	textLabFirewall.set('Firewall OFF')
+	labFirewall.grid(row=1, column=0)
 
 
 #get the different rules of the initial firewall
