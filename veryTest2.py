@@ -25,6 +25,8 @@ entriesFinal2 = []
 #For checking when creating widgets (no duplicate)
 global pressDelete
 global firewall
+global buttonStart
+global buttonStop
 
 
 #Creates the initial widgets
@@ -78,9 +80,11 @@ def createWidgets(root, *argv):
 
 
 def createSideFrame(sideFrame):
-	buttonStart = Button(sideFrame, text='Start', background='green', borderwidth=4, font=('Fixedsys',10), command=activateFirewall)
+	global buttonStart
+	global buttonStop
+	buttonStart = Button(sideFrame, text='Start', background='green', borderwidth=4, state='normal', font=('Fixedsys',10), command=activateFirewall)
 	buttonStart.grid(row=0, column=0)
-	buttonStop = Button(sideFrame, text='Stop', background='red', borderwidth=4, font=('Fixedsys',10), command=desactivateFirewall)
+	buttonStop = Button(sideFrame, text='Stop', background='red', borderwidth=4, state='disabled', font=('Fixedsys',10), command=desactivateFirewall)
 	buttonStop.grid(row=2, column=0)
 
 
@@ -246,14 +250,23 @@ def failEntries():
 
 def activateFirewall():
 	global firewall
+	global buttonStart
+	global buttonStop
 	subprocess.Popen(['./pox/pox.py','forwarding.l2_learning', 'openflow.discovery', 'openflow.spanning_tree', '--no-flood', '--hold-down', 'pox.misc.firewall'])
 	firewall = True
+	buttonStart.config(state='disabled')
+	buttonStop.config(state='normal')
+
 
 
 def desactivateFirewall():
 	global firewall
+	global buttonStart
+	global buttonStop
 	subprocess.Popen(['fuser', '-k', '6633/tcp'])
 	firewall = False
+	buttonStop.config(state='disabled')
+	buttonStart.config(state='normal')
 
 def closeApp():
 	global firewall
