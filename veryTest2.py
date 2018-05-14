@@ -27,6 +27,7 @@ global pressDelete
 global firewall
 global buttonStart
 global buttonStop
+global labFirewall
 
 
 #Creates the initial widgets
@@ -82,12 +83,13 @@ def createWidgets(root, *argv):
 def createSideFrame(sideFrame):
 	global buttonStart
 	global buttonStop
+	global labFirewall
 	buttonStart = Button(sideFrame, text='Start', background='green', borderwidth=4, state='normal', font=('Fixedsys',10), command=activateFirewall)
 	buttonStart.grid(row=0, column=0)
 	buttonStop = Button(sideFrame, text='Stop', background='red', borderwidth=4, state='disabled', font=('Fixedsys',10), command=desactivateFirewall)
 	buttonStop.grid(row=2, column=0)
 	textLabFirewall = StringVar()
-	labFirewall = Label(sideFrame, textvariable=textLabFirewall, fg='red')
+	labFirewall = Label(sideFrame, text='Firewall OFF', fg='red', width=20, font='family')
 	textLabFirewall.set('Firewall OFF')
 	labFirewall.grid(row=1, column=0)
 
@@ -256,10 +258,12 @@ def activateFirewall():
 	global firewall
 	global buttonStart
 	global buttonStop
+	global labFirewall
 	subprocess.Popen(['./pox/pox.py','forwarding.l2_learning', 'openflow.discovery', 'openflow.spanning_tree', '--no-flood', '--hold-down', 'pox.misc.firewall'])
 	firewall = True
 	buttonStart.config(state='disabled')
 	buttonStop.config(state='normal')
+	labFirewall.config(fg='green', text='Firewall ON')
 
 
 
@@ -267,10 +271,12 @@ def desactivateFirewall():
 	global firewall
 	global buttonStart
 	global buttonStop
+	global labFirewall
 	subprocess.Popen(['fuser', '-k', '6633/tcp'])
 	firewall = False
 	buttonStop.config(state='disabled')
 	buttonStart.config(state='normal')
+	labFirewall.config(fg='red', text='Firewall OFF')
 
 def closeApp():
 	global firewall
