@@ -24,9 +24,13 @@ entriesFinal2 = []
 
 #For checking when creating widgets (no duplicate)
 global pressDelete
+#For checking when firewall is enabled
 global firewall
+#Access the start button from anywhere
 global buttonStart
+#access the stop button from anywhere
 global buttonStop
+#access the firewall's label from anywhere
 global labFirewall
 
 
@@ -46,7 +50,7 @@ def createWidgets(root, *argv):
 	sideFrame.grid(row=1, column=3)
 
 
-	#Check if the user pressed on the delete button
+	#Check if the user pressed on the delete button, if true, lists are reset
 	if argv:
 		if argv[0] == True:
 			del listEntries1[:]
@@ -80,6 +84,7 @@ def createWidgets(root, *argv):
 		buttonDelete.pack(side=LEFT)
 
 
+#Creates the right side of the panel for managing the firewall
 def createSideFrame(sideFrame):
 	global buttonStart
 	global buttonStop
@@ -89,7 +94,7 @@ def createSideFrame(sideFrame):
 	buttonStop = Button(sideFrame, text='Stop', background='red', borderwidth=4, state='disabled', font=('Fixedsys',10), command=desactivateFirewall)
 	buttonStop.grid(row=2, column=0)
 	textLabFirewall = StringVar()
-	labFirewall = Label(sideFrame, text='Firewall OFF', fg='red', width=20, font='family')
+	labFirewall = Label(sideFrame, text='Firewall OFF', fg='red', width=20, height=2, font='family')
 	textLabFirewall.set('Firewall OFF')
 	labFirewall.grid(row=1, column=0)
 
@@ -166,6 +171,7 @@ def popUpNewRules():
 		buttonQuitAddRules.pack()
 
 
+#displays a pop-up where a link to my github is displayed. Can be changed later for a tutorial or other text.
 def popUpInfo():
 	window = Toplevel(root)
 	text = Text(window, height=2, width=55)
@@ -246,14 +252,17 @@ def deleteRules(ruleToDelete):
 	createWidgets(root, pressDelete)
 
 
+#Verifies if an IP is at the right format
 def verifyEntries(IP):
 	return re.match(r"10\.0\.0\.[0-9]+", IP)
 
+#Displays a label when an IP failed at the format checker
 def failEntries():
 	labFail = Label(root, text='At least one IP is not good!', anchor='w')
 	labFail.grid(row=2, column=0)
 	root.after(1500, labFail.destroy)
 
+#Activates the firewall when the user press the start button
 def activateFirewall():
 	global firewall
 	global buttonStart
@@ -266,7 +275,7 @@ def activateFirewall():
 	labFirewall.config(fg='green', text='Firewall ON')
 
 
-
+#Desactivates the firewall when the user press on the stop button
 def desactivateFirewall():
 	global firewall
 	global buttonStart
@@ -278,6 +287,7 @@ def desactivateFirewall():
 	buttonStart.config(state='normal')
 	labFirewall.config(fg='red', text='Firewall OFF')
 
+#Last check when the user close the app
 def closeApp():
 	global firewall
 	if firewall:
